@@ -1,0 +1,21 @@
+{
+  "tests": [
+    {
+      "name": "sentiment_analysis_check",
+      "input": {
+        "text": "RunPod infrastructure is highly efficient for AI scaling."
+      },
+      "timeout": 30000
+    }
+  ],
+  "config": {
+    "gpuTypeId": "NVIDIA GeForce RTX 4090",
+    "gpuCount": 1,
+    "allowedCudaVersions": [
+      "12.1",
+      "12.2",
+      "12.3",
+      "12.4"
+    ]
+  }
+}

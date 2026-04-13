@@ -1,0 +1,25 @@
+{
+  "title": "AI Text Insight API",
+  "description": "Serverless API for sentiment analysis using DistilBERT model",
+  "type": "serverless",
+  "category": "language",
+  "iconUrl": "https://runpod.io/icon.png",
+  "config": {
+    "runsOn": "GPU",
+    "containerDiskInGb": 20,
+    "presets": [
+      {
+        "name": "Standard Inference",
+        "defaults": {
+          "MODEL_NAME": "distilbert-base-uncased"
+        }
+      }
+    ],
+    "env": [
+      {
+        "key": "MODEL_NAME",
+        "value": "distilbert-base-uncased"
+      }
+    ]
+  }
+}
