@@ -1,31 +1,20 @@
 import runpod
-from transformers import pipeline
+import time
 
-# Initialize the sentiment analysis pipeline
-# This is loaded once when the worker container starts
-classifier = pipeline("sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english")
-
-def handler(event):
-    """
-    Main handler function for RunPod Serverless.
-    Processes the input text and returns sentiment analysis results.
-    """
-    # Extract input data from the request event
-    input_data = event.get("input", {})
-    text = input_data.get("text", "")
-
-    # Basic validation
-    if not text:
-        return {"error": "No input text provided."}
-
-    # Perform model inference
-    prediction = classifier(text)
-
-    # Return structured output
+# Simple function to simulate AI inference (e.g., image processing)
+def handler(job):
+    # Retrieve input data from the request
+    job_input = job['input']
+    
+    # Simulate processing time (3 seconds) to trigger scaling
+    # This helps demonstrate how RunPod handles concurrent traffic
+    time.sleep(3)
+    
+    # Return a dummy response
     return {
-        "text": text,
-        "sentiment": prediction[0]["label"],
-        "confidence": prediction[0]["score"]
+        "status": "success",
+        "message": f"Processed data: {job_input.get('text', 'No text provided')}",
+        "engine": "RunPod Serverless"
     }
 
 # Start the serverless worker
